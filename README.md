@@ -6,7 +6,7 @@ Geo-spatial search is prevalent in everyday applications that power our day-to-d
 ### Goals
 - Create/Update an Index
 - List all Indicies within the Service
-- Remove and Index
+- Remove an Index
 - Load Geospatial Records into an Azure Search Index
 - Query for Records within and outside of a specific radius
 - Query for Records within and outside of a specific polygon
