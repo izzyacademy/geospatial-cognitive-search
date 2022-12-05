@@ -1,0 +1,617 @@
+{
+	"info": {
+		"_postman_id": "07ece95b-345e-45ab-95a2-3d9da19da175",
+		"name": "Airlift Geospatial Scenarios",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24687710"
+	},
+	"item": [
+		{
+			"name": "CreateIndex",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "api-key",
+						"value": "{{AdminApiKey}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"restaurants\",  \n    \"fields\": [\n        {\"name\": \"restaurantId\", \"type\": \"Edm.String\", \"key\": true, \"searchable\": false, \"sortable\": false, \"facetable\": false},\n        {\"name\": \"name\", \"type\": \"Edm.String\", \"facetable\": false},\n        {\"name\": \"averageCost\", \"type\": \"Edm.Double\"},\n        {\"name\": \"description\", \"type\": \"Edm.String\", \"filterable\": false, \"sortable\": false, \"facetable\": false},\n        {\"name\": \"privateNotes\", \"type\": \"Edm.String\", \"searchable\": true, \"filterable\": false, \"sortable\": false, \"facetable\": false, \"retrievable\": false},\n        {\"name\": \"category\", \"type\": \"Collection(Edm.String)\"},\n        {\"name\": \"tags\", \"type\": \"Collection(Edm.String)\"},\n        {\"name\": \"mealOptions\", \"type\": \"Collection(Edm.String)\"},\n        {\"name\": \"location\", \"type\": \"Edm.GeographyPoint\"},\n        {\"name\": \"street\", \"type\": \"Edm.String\"},\n        {\"name\": \"city\", \"type\": \"Edm.String\"},\n        {\"name\": \"state\", \"type\": \"Edm.String\"},\n        {\"name\": \"zipcode\", \"type\": \"Edm.Int32\"},\n        {\"name\": \"parkingAvailable\", \"type\": \"Edm.Boolean\", \"sortable\": false},\n        {\"name\": \"smokingAllowed\", \"type\": \"Edm.Boolean\", \"sortable\": false},\n        {\"name\": \"petsAllowed\", \"type\": \"Edm.Boolean\", \"sortable\": false},\n        {\"name\": \"startDate\", \"type\": \"Edm.DateTimeOffset\"},\n        {\"name\": \"rating\", \"type\": \"Edm.Double\"}\n    ]\n}"
+				},
+				"url": {
+					"raw": "https://{{serviceName}}.search.windows.net/indexes/{{indexName}}?api-version={{apiVersion}}",
+					"protocol": "https",
+					"host": [
+						"{{serviceName}}",
+						"search",
+						"windows",
+						"net"
+					],
+					"path": [
+						"indexes",
+						"{{indexName}}"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "{{apiVersion}}"
+						},
+						{
+							"key": "Content-Type",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ListIndices - Name Only",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "api-key",
+						"value": "{{AdminApiKey}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"restaurants\",  \n    \"fields\": [\n        {\"name\": \"restaurantId\", \"type\": \"Edm.String\", \"key\": true, \"searchable\": false, \"sortable\": false, \"facetable\": false},\n        {\"name\": \"name\", \"type\": \"Edm.String\", \"facetable\": false},\n        {\"name\": \"averageCost\", \"type\": \"Edm.Double\"},\n        {\"name\": \"description\", \"type\": \"Edm.String\", \"filterable\": false, \"sortable\": false, \"facetable\": false},\n        {\"name\": \"privateNotes\", \"type\": \"Edm.String\", \"searchable\": true, \"filterable\": false, \"sortable\": false, \"facetable\": false, \"retrievable\": false},\n        {\"name\": \"category\", \"type\": \"Collection(Edm.String)\"},\n        {\"name\": \"tags\", \"type\": \"Collection(Edm.String)\"},\n        {\"name\": \"mealOptions\", \"type\": \"Collection(Edm.String)\"},\n        {\"name\": \"location\", \"type\": \"Edm.GeographyPoint\"},\n        {\"name\": \"street\", \"type\": \"Edm.String\"},\n        {\"name\": \"city\", \"type\": \"Edm.String\"},\n        {\"name\": \"state\", \"type\": \"Edm.String\"},\n        {\"name\": \"zipcode\", \"type\": \"Edm.Int32\"},\n        {\"name\": \"parkingAvailable\", \"type\": \"Edm.Boolean\", \"sortable\": false},\n        {\"name\": \"smokingAllowed\", \"type\": \"Edm.Boolean\", \"sortable\": false},\n        {\"name\": \"petsAllowed\", \"type\": \"Edm.Boolean\", \"sortable\": false},\n        {\"name\": \"startDate\", \"type\": \"Edm.DateTimeOffset\"},\n        {\"name\": \"rating\", \"type\": \"Edm.Double\"}\n    ]\n}"
+				},
+				"url": {
+					"raw": "https://{{serviceName}}.search.windows.net/indexes?api-version={{apiVersion}}&$select=name ",
+					"protocol": "https",
+					"host": [
+						"{{serviceName}}",
+						"search",
+						"windows",
+						"net"
+					],
+					"path": [
+						"indexes"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "{{apiVersion}}"
+						},
+						{
+							"key": "$select",
+							"value": "name "
+						},
+						{
+							"key": "Content-Type",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ListIndices - All Fields",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "api-key",
+						"value": "{{AdminApiKey}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"restaurants\",  \n    \"fields\": [\n        {\"name\": \"restaurantId\", \"type\": \"Edm.String\", \"key\": true, \"searchable\": false, \"sortable\": false, \"facetable\": false},\n        {\"name\": \"name\", \"type\": \"Edm.String\", \"facetable\": false},\n        {\"name\": \"averageCost\", \"type\": \"Edm.Double\"},\n        {\"name\": \"description\", \"type\": \"Edm.String\", \"filterable\": false, \"sortable\": false, \"facetable\": false},\n        {\"name\": \"privateNotes\", \"type\": \"Edm.String\", \"searchable\": true, \"filterable\": false, \"sortable\": false, \"facetable\": false, \"retrievable\": false},\n        {\"name\": \"category\", \"type\": \"Collection(Edm.String)\"},\n        {\"name\": \"tags\", \"type\": \"Collection(Edm.String)\"},\n        {\"name\": \"mealOptions\", \"type\": \"Collection(Edm.String)\"},\n        {\"name\": \"location\", \"type\": \"Edm.GeographyPoint\"},\n        {\"name\": \"street\", \"type\": \"Edm.String\"},\n        {\"name\": \"city\", \"type\": \"Edm.String\"},\n        {\"name\": \"state\", \"type\": \"Edm.String\"},\n        {\"name\": \"zipcode\", \"type\": \"Edm.Int32\"},\n        {\"name\": \"parkingAvailable\", \"type\": \"Edm.Boolean\", \"sortable\": false},\n        {\"name\": \"smokingAllowed\", \"type\": \"Edm.Boolean\", \"sortable\": false},\n        {\"name\": \"petsAllowed\", \"type\": \"Edm.Boolean\", \"sortable\": false},\n        {\"name\": \"startDate\", \"type\": \"Edm.DateTimeOffset\"},\n        {\"name\": \"rating\", \"type\": \"Edm.Double\"}\n    ]\n}"
+				},
+				"url": {
+					"raw": "https://{{serviceName}}.search.windows.net/indexes?api-version={{apiVersion}}",
+					"protocol": "https",
+					"host": [
+						"{{serviceName}}",
+						"search",
+						"windows",
+						"net"
+					],
+					"path": [
+						"indexes"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "{{apiVersion}}"
+						},
+						{
+							"key": "Content-Type",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteIndex",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "api-key",
+						"value": "{{AdminApiKey}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"restaurants\",  \n    \"fields\": [\n        {\"name\": \"restaurantId\", \"type\": \"Edm.String\", \"key\": true, \"searchable\": false, \"sortable\": false, \"facetable\": false},\n        {\"name\": \"name\", \"type\": \"Edm.String\", \"facetable\": false},\n        {\"name\": \"averageCost\", \"type\": \"Edm.Double\"},\n        {\"name\": \"description\", \"type\": \"Edm.String\", \"filterable\": false, \"sortable\": false, \"facetable\": false},\n        {\"name\": \"privateNotes\", \"type\": \"Edm.String\", \"searchable\": true, \"filterable\": false, \"sortable\": false, \"facetable\": false, \"retrievable\": false},\n        {\"name\": \"category\", \"type\": \"Collection(Edm.String)\"},\n        {\"name\": \"tags\", \"type\": \"Collection(Edm.String)\"},\n        {\"name\": \"mealOptions\", \"type\": \"Collection(Edm.String)\"},\n        {\"name\": \"location\", \"type\": \"Edm.GeographyPoint\"},\n        {\"name\": \"street\", \"type\": \"Edm.String\"},\n        {\"name\": \"city\", \"type\": \"Edm.String\"},\n        {\"name\": \"state\", \"type\": \"Edm.String\"},\n        {\"name\": \"zipcode\", \"type\": \"Edm.Int32\"},\n        {\"name\": \"parkingAvailable\", \"type\": \"Edm.Boolean\", \"sortable\": false},\n        {\"name\": \"smokingAllowed\", \"type\": \"Edm.Boolean\", \"sortable\": false},\n        {\"name\": \"petsAllowed\", \"type\": \"Edm.Boolean\", \"sortable\": false},\n        {\"name\": \"startDate\", \"type\": \"Edm.DateTimeOffset\"},\n        {\"name\": \"rating\", \"type\": \"Edm.Double\"}\n    ]\n}"
+				},
+				"url": {
+					"raw": "https://{{serviceName}}.search.windows.net/indexes/{{indexName}}?api-version={{apiVersion}}",
+					"protocol": "https",
+					"host": [
+						"{{serviceName}}",
+						"search",
+						"windows",
+						"net"
+					],
+					"path": [
+						"indexes",
+						"{{indexName}}"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "{{apiVersion}}"
+						},
+						{
+							"key": "Content-Type",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AddRestaurants",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "api-key",
+						"value": "{{AdminApiKey}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"value\": [\n        {\n            \"@search.action\": \"mergeOrUpload\",\n            \"restaurantId\": \"1\",\n            \"name\" : \"AdventureWorks Kitchens\",\n            \"averageCost\": 60.00,\n            \"description\": \"AdventureWorks Kitchens.\",\n            \"privateNotes\": \"serves paleo friendly meal options after 3pm for Florida residents\",\n            \"category\": [\"American\", \"Seafood\"],\n            \"tags\": [\"Seafood\",\"American\"],\n            \"mealOptions\": [\"Vegeterian\", \"Gluten-Free\"],\n            \"location\": {\"type\": \"Point\", \"coordinates\": [-81.48348905380216, 28.45131042313746 ]},\n            \"street\": \"123 Resturant Row\",\n            \"city\": \"Orlando\",\n            \"state\": \"FL\",\n            \"zipcode\": \"32819\",\n            \"parkingAvailable\": true,\n            \"smokingAllowed\": false,\n            \"petsAllowed\" : false,\n            \"rating\": 4.5,\n            \"startDate\": \"2008-06-06T00:00:00Z\"\n        },\n        {\n            \"@search.action\": \"mergeOrUpload\",\n            \"restaurantId\": \"2\",\n            \"name\" : \"Delicious Fabrikam of Punjab\",\n            \"averageCost\": 45.00,\n            \"description\": \"Delicious Fabrikam of Punjab\",\n            \"privateNotes\": \"serves vegeterian friendly meal options after 3pm for Florida residents\",\n            \"category\": [\"Indian\", \"Asian\"],\n            \"tags\": [\"Seafood\",\"American\"],\n            \"mealOptions\": [\"Vegan\", \"Vegeterian\", \"Halal\", \"Kosher\", \"Gluten-Free\"],\n            \"location\": {\"type\": \"Point\", \"coordinates\": [-81.4680395298038, 28.456366407153993]},\n            \"street\": \"185 Resturant Row\",\n            \"city\": \"Orlando\",\n            \"state\": \"FL\",\n            \"zipcode\": \"32819\",\n            \"parkingAvailable\": true,\n            \"smokingAllowed\": false,\n            \"petsAllowed\" : false,\n            \"rating\": 4.8,\n            \"startDate\": \"2008-06-06T00:00:00Z\"\n        },\n        {\n            \"@search.action\": \"mergeOrUpload\",\n            \"restaurantId\": \"3\",\n            \"name\" : \"Amazin Fabrikam of India\",\n            \"averageCost\": 55.00,\n            \"description\": \"Amazin Fabrikam of India\",\n            \"privateNotes\": \"serves vegeterian friendly meal options after 3pm for Florida residents. Thier curry meals are the best\",\n            \"category\": [\"Indian\", \"Asian\"],\n            \"tags\": [\"Seafood\",\"American\"],\n            \"mealOptions\": [\"Vegan\", \"Vegeterian\", \"Halal\", \"Kosher\", \"Gluten-Free\"],\n            \"location\": {\"type\": \"Point\", \"coordinates\": [-81.4680395298038, 28.456366407153993]},\n            \"street\": \"191 Resturant Row\",\n            \"city\": \"Orlando\",\n            \"state\": \"FL\",\n            \"zipcode\": \"32819\",\n            \"parkingAvailable\": true,\n            \"smokingAllowed\": false,\n            \"petsAllowed\" : false,\n            \"rating\": 4.95,\n            \"startDate\": \"2008-06-06T00:00:00Z\"\n        },\n        {\n            \"@search.action\": \"mergeOrUpload\",\n            \"restaurantId\": \"4\",\n            \"name\" : \"Contoso Kitchens of Punjab\",\n            \"averageCost\": 25.00,\n            \"description\": \"Contoso Kitchens of Punjab\",\n            \"privateNotes\": \"serves vegeterian friendly meal options after 3pm for Florida residents. Thier curry meals are the best\",\n            \"category\": [\"Indian\", \"Asian\"],\n            \"tags\": [\"Seafood\",\"American\"],\n            \"mealOptions\": [\"Vegan\", \"Vegeterian\", \"Halal\", \"Kosher\", \"Gluten-Free\"],\n            \"location\": {\"type\": \"Point\", \"coordinates\": [-81.269565988913363, 28.78807872913221 ]},\n            \"street\": \"255 Sanford Palace Ave\",\n            \"city\": \"Sanford\",\n            \"state\": \"FL\",\n            \"zipcode\": \"32773\",\n            \"parkingAvailable\": true,\n            \"smokingAllowed\": false,\n            \"petsAllowed\" : false,\n            \"rating\": 3.85,\n            \"startDate\": \"2008-06-06T00:00:00Z\"\n        },\n        {\n            \"@search.action\": \"mergeOrUpload\",\n            \"restaurantId\": \"5\",\n            \"name\" : \"Contoso Kitchens of Jamaica\",\n            \"averageCost\": 22.00,\n            \"description\": \"Contoso Kitchens of Jamaica\",\n            \"privateNotes\": \"serves vegeterian friendly meal options after 3pm for Florida residents. Thier jamaican patties are the best\",\n            \"category\": [\"Caribbean\", \"Jamaican\"],\n            \"tags\": [\"Caribbean\",\"American\", \"Seafood\", \"Soulfood\"],\n            \"mealOptions\": [\"Vegan\", \"Vegeterian\", \"Gluten-Free\"],\n            \"location\": {\"type\": \"Point\", \"coordinates\": [-81.27849238055686, 28.801768344563516 ]},\n            \"street\": \"244 Sanford Palace Ave\",\n            \"city\": \"Sanford\",\n            \"state\": \"FL\",\n            \"zipcode\": \"32773\",\n            \"parkingAvailable\": true,\n            \"smokingAllowed\": false,\n            \"petsAllowed\" : false,\n            \"rating\": 4.85,\n            \"startDate\": \"2010-06-06T00:00:00Z\"\n        },\n        {\n            \"@search.action\": \"mergeOrUpload\",\n            \"restaurantId\": \"6\",\n            \"name\" : \"Fabrikam Kitchens of Montego Bay\",\n            \"averageCost\": 17.00,\n            \"description\": \"Fabrikam Kitchens of Montego Bay\",\n            \"privateNotes\": \"serves vegeterian friendly meal options after 3pm for Florida residents. Thier curry goat meals are the best\",\n            \"category\": [\"Caribbean\", \"Jamaican\"],\n            \"tags\": [\"Caribbean\",\"American\", \"Seafood\", \"Soulfood\"],\n            \"mealOptions\": [\"Vegan\", \"Vegeterian\", \"Gluten-Free\"],\n            \"location\": {\"type\": \"Point\", \"coordinates\": [-81.29334108973305, 28.80206919504121]},\n            \"street\": \"120 Sanford Palace Ave\",\n            \"city\": \"Sanford\",\n            \"state\": \"FL\",\n            \"zipcode\": \"32773\",\n            \"parkingAvailable\": true,\n            \"smokingAllowed\": false,\n            \"petsAllowed\" : false,\n            \"rating\": 4.93,\n            \"startDate\": \"2010-09-06T00:00:00Z\"\n        },\n        {\n            \"@search.action\": \"mergeOrUpload\",\n            \"restaurantId\": \"7\",\n            \"name\" : \"Contoso Kitchens of Jerusalem\",\n            \"averageCost\": 17.00,\n            \"description\": \"Contoso Kitchens of Jerusalem\",\n            \"privateNotes\": \"serves vegeterian friendly meal options after 3pm for Florida residents. Thier shawarma meals are the best\",\n            \"category\": [\"Caribbean\", \"Jamaican\"],\n            \"tags\": [\"Mediterranean\", \"Soulfood\"],\n            \"mealOptions\": [\"Vegan\", \"Vegeterian\", \"Kosher\", \"Halal\", \"Gluten-Free\"],\n            \"location\": {\"type\": \"Point\", \"coordinates\": [-81.25626223213699, 28.761220801421292]},\n            \"street\": \"100 Sanford Palace Ave\",\n            \"city\": \"Sanford\",\n            \"state\": \"FL\",\n            \"zipcode\": \"32773\",\n            \"parkingAvailable\": true,\n            \"smokingAllowed\": true,\n            \"petsAllowed\" : true,\n            \"rating\": 4.97,\n            \"startDate\": \"2010-09-06T00:00:00Z\"\n        },\n        {\n            \"@search.action\": \"mergeOrUpload\",\n            \"restaurantId\": \"8\",\n            \"name\" : \"Contoso Kitchens of Jerusalem\",\n            \"averageCost\": 28.00,\n            \"description\": \"Contoso Kitchens of Jerusalem\",\n            \"privateNotes\": \"this restaurant serves vegan friendly meal options after 3pm for Florida residents. Thier shawarma meals are the best\",\n            \"category\": [\"Mediterranean\", \"Soulfood\"],\n            \"tags\": [\"Mediterranean\", \"Soulfood\"],\n            \"mealOptions\": [\"Vegan\", \"Vegeterian\", \"Kosher\", \"Halal\", \"Gluten-Free\"],\n            \"location\": {\"type\": \"Point\", \"coordinates\": [-81.6292190455019, 28.472053399603297]},\n            \"street\": \"100 Hamlin Rd\",\n            \"city\": \"Winter Garden\",\n            \"state\": \"FL\",\n            \"zipcode\": \"34787\",\n            \"parkingAvailable\": true,\n            \"smokingAllowed\": true,\n            \"petsAllowed\" : true,\n            \"rating\": 4.91,\n            \"startDate\": \"2021-01-06T00:00:00Z\"\n        },\n        {\n            \"@search.action\": \"mergeOrUpload\",\n            \"restaurantId\": \"9\",\n            \"name\" : \"AdventureWorks Kitchens of Winter Garden\",\n            \"averageCost\": 75.00,\n            \"description\": \"AdventureWorks Kitchens of Winter Garden\",\n            \"privateNotes\": \"this restaurant serves vegan friendly meal options after 3pm for Florida residents. Thier shawarma meals are the best\",\n            \"category\": [\"American\", \"Soulfood\"],\n            \"tags\": [\"American\", \"Soulfood\"],\n            \"mealOptions\": [\"Vegan\", \"Vegeterian\", \"Gluten-Free\"],\n            \"location\": {\"type\": \"Point\", \"coordinates\": [-81.628038873529797, 28.476278483950757]},\n            \"street\": \"105 Hamlin Rd\",\n            \"city\": \"Winter Garden\",\n            \"state\": \"FL\",\n            \"zipcode\": \"34787\",\n            \"parkingAvailable\": true,\n            \"smokingAllowed\": true,\n            \"petsAllowed\" : true,\n            \"rating\": 4.55,\n            \"startDate\": \"2021-01-06T00:00:00Z\"\n        },\n        {\n            \"@search.action\": \"mergeOrUpload\",\n            \"restaurantId\": \"10\",\n            \"name\" : \"AdventureWorks Italian Kitchens of Sicily\",\n            \"averageCost\": 75.00,\n            \"description\": \"AdventureWorks Italian Kitchens of Sicily\",\n            \"privateNotes\": \"this restaurant serves vegan friendly meal options after 3pm for Florida residents. Thier lasagna and pizza are the best\",\n            \"category\": [\"American\", \"Italian\", \"Mediterranean\"],\n            \"tags\": [\"American\", \"Italian\", \"Mediterranean\"],\n            \"mealOptions\": [\"Vegeterian\", \"Gluten-Free\"],\n            \"location\": {\"type\": \"Point\", \"coordinates\": [-81.62615059837444, 28.474411168403524]},\n            \"street\": \"114 Hamlin Rd\",\n            \"city\": \"Winter Garden\",\n            \"state\": \"FL\",\n            \"zipcode\": \"34787\",\n            \"parkingAvailable\": true,\n            \"smokingAllowed\": true,\n            \"petsAllowed\" : true,\n            \"rating\": 4.87,\n            \"startDate\": \"2021-01-06T00:00:00Z\"\n        },\n        {\n            \"@search.action\": \"mergeOrUpload\",\n            \"restaurantId\": \"11\",\n            \"name\" : \"AdventureWorks Italian Kitchens of Sicily\",\n            \"averageCost\": 75.00,\n            \"description\": \"AdventureWorks Italian Kitchens of Sicily\",\n            \"privateNotes\": \"this restaurant serves vegan friendly meal options after 3pm for Florida residents. Thier lasagna and pizza are the best\",\n            \"category\": [\"American\", \"Italian\", \"Mediterranean\"],\n            \"tags\": [\"American\", \"Italian\", \"Mediterranean\"],\n            \"mealOptions\": [\"Vegeterian\", \"Gluten-Free\"],\n            \"location\": {\"type\": \"Point\", \"coordinates\": [-81.3722312330959, 28.663760524694737]},\n            \"street\": \"114 Montgomery Ave\",\n            \"city\": \"Altamonte Springs\",\n            \"state\": \"FL\",\n            \"zipcode\": \"32701\",\n            \"parkingAvailable\": true,\n            \"smokingAllowed\": true,\n            \"petsAllowed\" : true,\n            \"rating\": 4.85,\n            \"startDate\": \"2021-01-06T00:00:00Z\"\n        }\n    ]\n}"
+				},
+				"url": {
+					"raw": "https://{{serviceName}}.search.windows.net/indexes/{{indexName}}/docs/index?api-version={{apiVersion}}",
+					"protocol": "https",
+					"host": [
+						"{{serviceName}}",
+						"search",
+						"windows",
+						"net"
+					],
+					"path": [
+						"indexes",
+						"{{indexName}}",
+						"docs",
+						"index"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "{{apiVersion}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search All - All Fields",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "api-key",
+						"value": "{{AdminApiKey}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"count\": true,\n    \"search\": \"*\",\n    \"select\": \"*\",\n    \"orderby\": \"name asc\",\n    \"skip\": 0,\n    \"top\": 25\n}"
+				},
+				"url": {
+					"raw": "https://{{serviceName}}.search.windows.net/indexes/{{indexName}}/docs/search?api-version={{apiVersion}}",
+					"protocol": "https",
+					"host": [
+						"{{serviceName}}",
+						"search",
+						"windows",
+						"net"
+					],
+					"path": [
+						"indexes",
+						"{{indexName}}",
+						"docs",
+						"search"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "{{apiVersion}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SearchAll - Patial Fields",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "api-key",
+						"value": "{{AdminApiKey}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"count\": true,\n    \"search\": \"*\",\n    \"select\": \"name, location, street, city, state, zipcode\",\n    \"orderby\": \"name asc\",\n    \"skip\": 0,\n    \"top\": 25\n}"
+				},
+				"url": {
+					"raw": "https://{{serviceName}}.search.windows.net/indexes/{{indexName}}/docs/search?api-version={{apiVersion}}",
+					"protocol": "https",
+					"host": [
+						"{{serviceName}}",
+						"search",
+						"windows",
+						"net"
+					],
+					"path": [
+						"indexes",
+						"{{indexName}}",
+						"docs",
+						"search"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "{{apiVersion}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Filter - Intra Radius",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "api-key",
+						"value": "{{AdminApiKey}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"count\": true,\n    \"search\": \"*\",\n    \"select\": \"name, location, street, city, state, zipcode\",\n    \"orderby\": \"geo.distance(location,geography'POINT(-81.62932633386299 28.476882053634096 )') asc, name asc\",\n    \"skip\": 0,\n    \"top\": 25,\n    \"filter\" : \"geo.distance(location,geography'POINT(-81.62932633386299 28.476882053634096)') le 6.30\"\n}"
+				},
+				"url": {
+					"raw": "https://{{serviceName}}.search.windows.net/indexes/{{indexName}}/docs/search?api-version={{apiVersion}}",
+					"protocol": "https",
+					"host": [
+						"{{serviceName}}",
+						"search",
+						"windows",
+						"net"
+					],
+					"path": [
+						"indexes",
+						"{{indexName}}",
+						"docs",
+						"search"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "{{apiVersion}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Filter - Extra Radius",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "api-key",
+						"value": "{{AdminApiKey}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"count\": true,\n    \"search\": \"*\",\n    \"select\": \"name, location, street, city, state, zipcode\",\n    \"orderby\": \"geo.distance(location,geography'POINT(-81.62932633386299 28.476882053634096 )') asc, name asc\",\n    \"skip\": 0,\n    \"top\": 25,\n    \"filter\" : \"geo.distance(location,geography'POINT(-81.62932633386299 28.476882053634096)') ge 6.30\"\n}"
+				},
+				"url": {
+					"raw": "https://{{serviceName}}.search.windows.net/indexes/{{indexName}}/docs/search?api-version={{apiVersion}}",
+					"protocol": "https",
+					"host": [
+						"{{serviceName}}",
+						"search",
+						"windows",
+						"net"
+					],
+					"path": [
+						"indexes",
+						"{{indexName}}",
+						"docs",
+						"search"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "{{apiVersion}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Filter - Intra Polygon",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "api-key",
+						"value": "{{AdminApiKey}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"count\": true,\n    \"search\": \"*\",\n    \"select\": \"name, location, street, city, state, zipcode\",\n    \"orderby\": \"name asc\",\n    \"skip\": 0,\n    \"top\": 25,\n    \"filter\" : \"geo.intersects(location, geography'POLYGON((-80.86275347468487 28.36666678257669, -80.97536333849513 28.61168654885275,   -81.32829913116873 28.61048094993618, -81.33104571321287 28.63820622345705, -81.46150836031013 28.640616770727778,-81.45876177826597 28.71411184225774, -81.41893633862576 28.78635173146367,-81.65926226748913 28.768296444445237,  -81.65788897646704 28.34733072941996,  -80.86275347468487 28.36666678257669))')\"\n}"
+				},
+				"url": {
+					"raw": "https://{{serviceName}}.search.windows.net/indexes/{{indexName}}/docs/search?api-version={{apiVersion}}",
+					"protocol": "https",
+					"host": [
+						"{{serviceName}}",
+						"search",
+						"windows",
+						"net"
+					],
+					"path": [
+						"indexes",
+						"{{indexName}}",
+						"docs",
+						"search"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "{{apiVersion}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Filter - Extra Polygon",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "api-key",
+						"value": "{{AdminApiKey}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"count\": true,\n    \"search\": \"*\",\n    \"select\": \"name, location, street, city, state, zipcode\",\n    \"orderby\": \"name asc\",\n    \"skip\": 0,\n    \"top\": 25,\n    \"filter\" : \"not geo.intersects(location, geography'POLYGON((-80.86275347468487 28.36666678257669, -80.97536333849513 28.61168654885275,   -81.32829913116873 28.61048094993618, -81.33104571321287 28.63820622345705, -81.46150836031013 28.640616770727778,-81.45876177826597 28.71411184225774, -81.41893633862576 28.78635173146367,-81.65926226748913 28.768296444445237,  -81.65788897646704 28.34733072941996,  -80.86275347468487 28.36666678257669))')\"\n}"
+				},
+				"url": {
+					"raw": "https://{{serviceName}}.search.windows.net/indexes/{{indexName}}/docs/search?api-version={{apiVersion}}",
+					"protocol": "https",
+					"host": [
+						"{{serviceName}}",
+						"search",
+						"windows",
+						"net"
+					],
+					"path": [
+						"indexes",
+						"{{indexName}}",
+						"docs",
+						"search"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "{{apiVersion}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Filter - Intra Polygon within Radius",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "api-key",
+						"value": "{{AdminApiKey}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"count\": true,\n    \"search\": \"*\",\n    \"select\": \"name, location, street, city, state, zipcode\",\n    \"orderby\": \"name asc\",\n    \"skip\": 0,\n    \"top\": 25,\n    \"filter\" : \"(geo.distance(location,geography'POINT(-81.62932633386299 28.476882053634096)') le 4.5) and geo.intersects(location, geography'POLYGON((-80.86275347468487 28.36666678257669, -80.97536333849513 28.61168654885275,   -81.32829913116873 28.61048094993618, -81.33104571321287 28.63820622345705, -81.46150836031013 28.640616770727778,-81.45876177826597 28.71411184225774, -81.41893633862576 28.78635173146367,-81.65926226748913 28.768296444445237,  -81.65788897646704 28.34733072941996,  -80.86275347468487 28.36666678257669))')\"\n}"
+				},
+				"url": {
+					"raw": "https://{{serviceName}}.search.windows.net/indexes/{{indexName}}/docs/search?api-version={{apiVersion}}",
+					"protocol": "https",
+					"host": [
+						"{{serviceName}}",
+						"search",
+						"windows",
+						"net"
+					],
+					"path": [
+						"indexes",
+						"{{indexName}}",
+						"docs",
+						"search"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "{{apiVersion}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "AdminApiKey",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "QueryApiKey",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "indexName",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "serviceName",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "apiVersion",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
